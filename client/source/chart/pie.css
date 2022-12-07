@@ -1,0 +1,89 @@
+.pie {
+	width: 100%;
+	padding-bottom: 100%;
+	margin: 0;
+	margin-top: 1rem;
+	position: relative;
+	image-rendering: pixelated;
+	transform: scaleX(-1);
+/*	border: 1px solid white;*/
+/*	border-radius: 50%;
+	overflow: hidden;*/
+	--transform: transform 0.5s ease-out;
+}
+
+.pie .segment {
+/*	filter: blur(0.1px);*/
+	position: absolute;
+	width: 100%;
+	height:100%;
+	--value: clamp(0, calc(var(--percentage) / 100), 1);
+	--offset: clamp(0, calc(var(--startPercentage) / 100), 1);
+	z-index: calc(1000 * var(--value));
+	transform: rotate(calc(calc(360deg * var(--offset)) + calc(180deg * var(--value))));
+	transition: var(--transform);
+	pointer-events: none;
+}
+
+.pie .segment:focus {
+	filter: brightness(1.75);
+}
+
+.pie .segment[data-value="0"] {
+	opacity: 0;
+}
+
+.pie .segment .mask {
+	position: absolute;
+	width: 50%;
+	height:100%;
+	overflow: hidden;
+	transform-origin: center right;
+	--seg-val: calc(var(--value) / 2);
+}
+
+.pie .segment .mask.top {
+	transform: rotate(180deg);
+}
+
+.pie .segment .mask .wedge {
+	pointer-events: initial;
+	position: absolute;
+	width: 100%;
+	height:100%;
+	overflow: hidden;
+	transform-origin: center right;
+	transition: var(--transform);
+}
+
+.pie .segment .mask.bottom .wedge {
+	transform: rotate(calc(180deg + calc(-360deg * var(--seg-val))));
+}
+
+.pie .segment .mask.top .wedge {
+	transform: rotate(calc(180deg + calc(360deg * var(--seg-val))));
+}
+
+.pie .segment .mask .wedge::before {
+	content: '';
+	position: absolute;
+	width: 200%;
+	height:100%;
+	border-radius: 50%;
+}
+
+.pie .segment.protein .mask .wedge::before {
+	background-color: var(--protein-color);
+}
+
+.pie .segment.fat .mask .wedge::before {
+	background-color: var(--fat-color);
+}
+
+.pie .segment.carbs .mask .wedge::before {
+	background-color: var(--carb-color)
+}
+
+.pie .segment.sugar .mask .wedge::before {
+	background-color: var(--sugar-color)
+}

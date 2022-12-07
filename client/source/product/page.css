@@ -1,0 +1,116 @@
+.page-segment {
+	border: 1px solid white;
+	border-radius: 4px;
+	padding: 0.5rem;
+	margin-top: 1rem;
+}
+
+.legend {
+	display: flex;
+	border-radius: 4px;
+	overflow: hidden;
+	margin-top: 1rem;
+}
+
+.legend > div {
+	text-align: center;
+	text-transform: uppercase;
+	flex: 1;
+	font-size: 0.75rem;
+	font-weight: bold;
+	padding: 0.25rem;
+	color: rgba(0,0,0,0.75);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.legend div:empty {
+	display: none;
+}
+
+.legend .protein {
+	background-color: var(--protein-color);
+}
+
+.legend .fat {
+	background-color: var(--fat-color);
+}
+
+.legend .carbs {
+	background-color: var(--carb-color);
+	display: flex;
+	padding: 0;
+}
+
+.legend .carbs > div {
+	padding: 0.25rem;
+	flex: 1;
+}
+
+.legend .sugar {
+	background-color: var(--sugar-color);
+}
+
+.page-segment .caption {
+	margin: 0.5rem;
+}
+
+.page-segment .buttons {
+	margin: 0rem;
+	padding: 0;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.page-segment .buttons input,
+.page-segment .buttons button {
+	margin: 0;
+	padding: 0;
+	font-size: 1.5rem;
+	min-width: 2rem;
+	min-height: 2rem;
+	border:1px solid white;
+	background-color: transparent;
+	color: white;
+}
+
+.page-segment .buttons input {
+	max-width: 2rem;
+	text-align: center;
+	font-size: 1.2rem;
+}
+
+.page-segment .buttons button:not(:first-child) {
+	border-left: none;
+}
+
+.page-segment.counters .row {
+	flex-wrap: wrap;
+}
+
+.page-segment .counter:empty {
+	display: none;
+}
+
+.page-segment .counter {
+	padding: 1rem;
+	flex: 1;
+	min-width: 50%;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.page-segment .counter .value {
+	font-size: 2rem;
+}
+
+.page-segment .counter .label {
+	text-align: center;
+	font-size: 0.85em;
+	font-weight: bold;
+}
+
+article.product-detail > .caption {
+	margin-top: 1rem;
+}

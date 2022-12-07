@@ -1,0 +1,91 @@
+<article class = "product-detail">
+
+<h1>[[title]]</h1>
+
+<p><span cv-if = "subTitle">[[subTitle]],</span> [[brand_name]]</p>
+
+<div class = "legend">
+	<div class = "protein">[[nf_protein]]g protein</div>
+	<div class = "fat">[[nf_total_fat]]g fat</div>
+	<div class = "carbs">
+		<div>[[netCarbs]]g carbs</div>
+		<div class = "sugar" cv-if = "nf_sugars">[[nf_sugars]]g sugar</div>
+	</div>
+</div>
+
+[[chart]]
+
+<div class = "page-segment servings">
+	<div class = "list" cv-each = "servings:serving">
+		<div class = "serving"></div>
+	</div>
+	<div class = "caption">[[nf_servings_per_container]] servings per container.</div>
+</div>
+
+<div class = "page-segment allocation">
+	
+	<div class = "caption">[[qtyServings]] [[nf_serving_size_unit]]<span cv-if = "!multiServing" cv-is = "1">s</span>: [[calorieServings]] calories.</div>
+	
+	<div class = "bar" style = "--alloc: [[alloc]]">
+		<div class = "filled"></div>
+	</div>
+
+	<div class = "caption">
+		[[multiServing]] serving<span cv-if = "!multiServing" cv-is = "1">s</span> represents [[allocPercent]]% of a [[dailyCalories]] calorie diet.
+	</div>
+
+	<div class = "buttons">
+		<button cv-on = "click:decServing">-</button>
+		<input type = "number" min = "0" cv-bind = "multiServing">
+		<button cv-on = "click:incServing">+</button>
+	</div>
+
+</div>
+
+<div class = "caption">Carb breakdown</div>
+
+<div class = "page-segment carb-breakdown counters">
+	<div class = "row">
+		<div class = "counter" cv-if = "?nf_dietary_fiber">
+			<div class = "value">[[nf_dietary_fiber]]g</div>
+			<div class = "label">fiber</div>
+		</div>
+		<div class = "counter" cv-if = "?nf_sugars">
+			<div class = "value">[[nf_sugars]]g</div>
+			<div class = "label">sugar</div>
+		</div>
+	</div>
+	<div class = "caption"></div>
+</div>
+
+<div class = "caption">Fat breakdown</div>
+
+<div class = "page-segment fat-breakdown counters">
+	<div class = "row">
+		<div class = "counter" cv-if = "?nf_polyunsaturated_fat">
+			<div class = "value">[[nf_polyunsaturated_fat]]g</div>
+			<div class = "label">polyunsaturated fat</div>
+		</div>
+		<div class = "counter" cv-if = "?nf_monounsaturated_fat">
+			<div class = "value">[[nf_monounsaturated_fat]]g</div>
+			<div class = "label">monounsaturated fat</div>
+		</div>
+		<div class = "counter" cv-if = "?nf_saturated_fat">
+			<div class = "value">[[nf_saturated_fat]]g</div>
+			<div class = "label">saturated fat</div>
+		</div>
+		<div class = "counter" cv-if = "?nf_trans_fatty_acid">
+			<div class = "value">[[nf_trans_fatty_acid]]g</div>
+			<div class = "label">transfat</div>
+		</div>
+		<div class = "counter">
+			<div class = "value">[[nf_total_fat]]g</div>
+			<div class = "label">total fat</div>
+		</div>
+	</div>
+	<div class = "caption"></div>
+</div>
+
+<!-- <pre>[[debug]]</pre> -->
+
+</article>

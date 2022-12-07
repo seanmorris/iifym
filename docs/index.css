@@ -1,0 +1,322 @@
+.pie {
+	width: 100%;
+	padding-bottom: 100%;
+	margin: 0;
+	margin-top: 1rem;
+	position: relative;
+	image-rendering: pixelated;
+	transform: scaleX(-1);
+/*	border: 1px solid white;*/
+/*	border-radius: 50%;
+	overflow: hidden;*/
+	--transform: transform 0.5s ease-out;
+}
+
+.pie .segment {
+/*	filter: blur(0.1px);*/
+	position: absolute;
+	width: 100%;
+	height:100%;
+	--value: clamp(0, calc(var(--percentage) / 100), 1);
+	--offset: clamp(0, calc(var(--startPercentage) / 100), 1);
+	z-index: calc(1000 * var(--value));
+	transform: rotate(calc(calc(360deg * var(--offset)) + calc(180deg * var(--value))));
+	transition: var(--transform);
+	pointer-events: none;
+}
+
+.pie .segment:focus {
+	filter: brightness(1.75);
+}
+
+.pie .segment[data-value="0"] {
+	opacity: 0;
+}
+
+.pie .segment .mask {
+	position: absolute;
+	width: 50%;
+	height:100%;
+	overflow: hidden;
+	transform-origin: center right;
+	--seg-val: calc(var(--value) / 2);
+}
+
+.pie .segment .mask.top {
+	transform: rotate(180deg);
+}
+
+.pie .segment .mask .wedge {
+	pointer-events: initial;
+	position: absolute;
+	width: 100%;
+	height:100%;
+	overflow: hidden;
+	transform-origin: center right;
+	transition: var(--transform);
+}
+
+.pie .segment .mask.bottom .wedge {
+	transform: rotate(calc(180deg + calc(-360deg * var(--seg-val))));
+}
+
+.pie .segment .mask.top .wedge {
+	transform: rotate(calc(180deg + calc(360deg * var(--seg-val))));
+}
+
+.pie .segment .mask .wedge::before {
+	content: '';
+	position: absolute;
+	width: 200%;
+	height:100%;
+	border-radius: 50%;
+}
+
+.pie .segment.protein .mask .wedge::before {
+	background-color: var(--protein-color);
+}
+
+.pie .segment.fat .mask .wedge::before {
+	background-color: var(--fat-color);
+}
+
+.pie .segment.carbs .mask .wedge::before {
+	background-color: var(--carb-color)
+}
+
+.pie .segment.sugar .mask .wedge::before {
+	background-color: var(--sugar-color)
+}
+
+html {
+	background-color: #333;
+	color: white;
+
+/*	font-size: 0.85rem;*/
+
+	--protein-color: #084;
+	--fat-color:     #0A9;
+	--carb-color:    #C36;
+	--sugar-color:    #A14;
+
+	font-family: sans-serif;
+
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+body > main {
+	flex: 1;
+}
+
+article {
+	width: 100%;
+	max-width: 491px;
+	margin: 0 auto;
+	padding: 1rem;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+nav {
+	position: sticky;
+	bottom: 0;
+	background-color: black;
+	color: white;
+	margin: 0;
+/*	padding: 1rem;*/
+}
+
+h1 {
+	margin: 0;
+	font-size: 1.8em;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+}
+
+button {
+	user-select: none;
+}
+
+nav {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+nav .icon {
+	height: 2.5rem;
+	padding: 0.5rem;
+}
+
+nav a:first-child:last-child .icon,
+nav a:nth-child(3) .icon {
+	height: 3.5rem;
+}
+div.bar {
+	height: 1rem;
+	background-color: rgba(0,0,0,0.5);
+	margin: 0.5rem;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+div.bar .filled {
+	width: calc(100% * var(--alloc));
+	height: 100%;
+	background-color: rgba(255,255,255,0.5);
+	transition: width 0.5s ease-out;
+}
+.page-segment {
+	border: 1px solid white;
+	border-radius: 4px;
+	padding: 0.5rem;
+	margin-top: 1rem;
+}
+
+.legend {
+	display: flex;
+	border-radius: 4px;
+	overflow: hidden;
+	margin-top: 1rem;
+}
+
+.legend > div {
+	text-align: center;
+	text-transform: uppercase;
+	flex: 1;
+	font-size: 0.75rem;
+	font-weight: bold;
+	padding: 0.25rem;
+	color: rgba(0,0,0,0.75);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.legend div:empty {
+	display: none;
+}
+
+.legend .protein {
+	background-color: var(--protein-color);
+}
+
+.legend .fat {
+	background-color: var(--fat-color);
+}
+
+.legend .carbs {
+	background-color: var(--carb-color);
+	display: flex;
+	padding: 0;
+}
+
+.legend .carbs > div {
+	padding: 0.25rem;
+	flex: 1;
+}
+
+.legend .sugar {
+	background-color: var(--sugar-color);
+}
+
+.page-segment .caption {
+	margin: 0.5rem;
+}
+
+.page-segment .buttons {
+	margin: 0rem;
+	padding: 0;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.page-segment .buttons input,
+.page-segment .buttons button {
+	margin: 0;
+	padding: 0;
+	font-size: 1.5rem;
+	min-width: 2rem;
+	min-height: 2rem;
+	border:1px solid white;
+	background-color: transparent;
+	color: white;
+}
+
+.page-segment .buttons input {
+	max-width: 2rem;
+	text-align: center;
+	font-size: 1.2rem;
+}
+
+.page-segment .buttons button:not(:first-child) {
+	border-left: none;
+}
+
+.page-segment.counters .row {
+	flex-wrap: wrap;
+}
+
+.page-segment .counter:empty {
+	display: none;
+}
+
+.page-segment .counter {
+	padding: 1rem;
+	flex: 1;
+	min-width: 50%;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.page-segment .counter .value {
+	font-size: 2rem;
+}
+
+.page-segment .counter .label {
+	text-align: center;
+	font-size: 0.85em;
+	font-weight: bold;
+}
+
+article.product-detail > .caption {
+	margin-top: 1rem;
+}
+.servings {
+}
+
+.servings .list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	box-sizing: border-box;
+}
+
+.servings .caption {
+	text-align: center;
+}
+
+.servings .serving {
+	background-color: white;
+	border: 1px solid white;
+	border-radius: 50%;
+	width: 1rem;
+	height: 1rem;
+	margin: 0.25rem;
+}
+
+
+/*# sourceMappingURL=index.css.map*/
