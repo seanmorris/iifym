@@ -20,7 +20,8 @@ import { Asset } from 'expo-asset';
 
 const localUri = require('./assets/app.html');
 
-const origin = 'http://10.0.2.2:3333/';
+// const origin = 'http://10.0.2.2:3333/';
+const origin = 'http://iifym.seanmorr.is/';
 
 export default class App extends React.Component
 {
