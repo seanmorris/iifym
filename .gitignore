@@ -20,6 +20,7 @@ nbproject
 Thumbs.db
 
 # NPM packages folder.
+agent/node_modules/
 client/node_modules/
 
 # Brunch folder for temporary files.
