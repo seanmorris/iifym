@@ -32,7 +32,7 @@ export default class App extends React.Component
     const url = origin;
     const baseUrl = origin;
  
-    this.setState({baseUrl, url}, ()=>{});
+    // this.setState({baseUrl, url}, ()=>{});
 
     this.state = this.state || {
       url,
@@ -65,18 +65,17 @@ export default class App extends React.Component
 
   handleBarCodeScanned(barcode) {
     const packet = {
-      target: barcode.target
-      , type: barcode.type
+      type: barcode.type
       , data: barcode.data
     };
 
-    // console.log();
+    console.log(packet);
     
     // this.webView.postMessage(JSON.stringify(packet));
     
     this.setState({
       willScan: false
-      , url: `${this.state.baseUrl}product?upc=${barcode.data}`
+      , url: `${origin}product?upc=${barcode.data}`
     });
   }
 

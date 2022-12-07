@@ -42,7 +42,7 @@ export default (parent, sourceState) => {
 		{parent.state.willScan &&
 		<BarCodeScanner
         	onBarCodeScanned={parent.scanned ? undefined : (...a) => parent.handleBarCodeScanned(...a)}
-        	style={StyleSheet.absoluteFillObject}
+        	style={{position: 'absolute',top: 0,left: 0,bottom:76,right: 0}}
       	/>}
 		</View>
 };
